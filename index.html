@@ -1,0 +1,608 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMBER & OAK | Modern Grill</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #faf7f0;
+    color: #25241f;
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.7;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+}
+
+header {
+    background: #201f1b;
+    color: white;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: #e88b48;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #e88b48;
+}
+
+.hero {
+    min-height: 570px;
+    padding: 90px 7%;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(90deg, rgba(20,19,16,.93), rgba(20,19,16,.3)),
+        url('https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1800&q=85')
+        center/cover;
+    color: white;
+}
+
+.hero-content {
+    max-width: 620px;
+}
+
+.eyebrow {
+    color: #e88b48;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 8vw, 80px);
+    margin: 20px 0;
+}
+
+.hero h1 em {
+    color: #e88b48;
+}
+
+.hero p {
+    max-width: 490px;
+    color: #eee7dc;
+    margin-bottom: 30px;
+}
+
+.button {
+    display: inline-block;
+    background: #df8040;
+    color: #201f1b;
+    padding: 13px 25px;
+    border: 2px solid #df8040;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background: transparent;
+    color: white;
+    transform: translateY(-3px);
+}
+
+section {
+    padding: 80px 7%;
+    scroll-margin-top: 30px;
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 42px;
+}
+
+.section-heading h2 {
+    font-size: clamp(32px, 5vw, 48px);
+    margin: 10px 0;
+}
+
+.section-heading p {
+    color: #706d65;
+}
+
+#menu {
+    background: #faf7f0;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.menu-card {
+    background: white;
+    border: 1px solid #e7dfd2;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.menu-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 28px #00000018;
+}
+
+.menu-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.menu-info {
+    padding: 23px;
+}
+
+.menu-info h3 {
+    font-size: 22px;
+    margin-bottom: 9px;
+}
+
+.menu-info p {
+    color: #706d65;
+    font-size: 14px;
+}
+
+.price {
+    color: #bd632c;
+    font-weight: bold;
+    font-size: 19px;
+    margin-top: 12px;
+}
+
+.special {
+    background: #292721;
+    color: #fffaf0;
+}
+
+.special-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    align-items: center;
+}
+
+.special img, .about img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px #00000018;
+}
+
+.special h2, .about h2 {
+    font-size: clamp(32px, 5vw, 48px);
+    margin: 12px 0 20px;
+}
+
+.special p {
+    color: #e2ddd3;
+    margin-bottom: 18px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #b8b0a4;
+    margin-right: 10px;
+}
+
+.new-price {
+    color: #f0a267;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.about p {
+    color: #706d65;
+    margin: 15px 0;
+}
+
+.about ul {
+    padding-left: 22px;
+    margin-top: 18px;
+}
+
+.about li {
+    margin-bottom: 8px;
+}
+
+#reviews {
+    background: #eee7da;
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.review {
+    background: #fffdf8;
+    padding: 28px;
+    border-radius: 8px;
+    border-left: 4px solid #df8040;
+}
+
+.stars {
+    color: #c76a30;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.review p {
+    color: #565249;
+    margin-bottom: 15px;
+}
+
+.review h3 {
+    font-size: 17px;
+}
+
+#contact {
+    background: #faf7f0;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.contact-card {
+    background: white;
+    border: 1px solid #e7dfd2;
+    padding: 28px;
+    border-radius: 8px;
+}
+
+.contact-card h3 {
+    margin-bottom: 12px;
+    color: #bd632c;
+}
+
+.contact-card a {
+    color: #75401f;
+}
+
+footer {
+    background: #201f1b;
+    color: #c9c2b7;
+    text-align: center;
+    padding: 28px 7%;
+    font-size: 14px;
+}
+
+footer span {
+    color: #e88b48;
+}
+
+@media (max-width: 800px) {
+    header {
+        justify-content: center;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .hero {
+        min-height: 480px;
+    }
+
+    .menu-grid, .review-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .special-grid, .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .special img {
+        order: 2;
+    }
+}
+
+@media (max-width: 520px) {
+    section {
+        padding: 55px 6%;
+    }
+
+    .menu-grid, .review-grid, .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 65px 6%;
+    }
+
+    .special img, .about img {
+        height: 260px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">EMBER <span>&</span> OAK</div>
+
+    <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#special">Special</a>
+        <a href="#about">About</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <span class="eyebrow">A Modern Neighborhood Grill</span>
+        <h1>Good Food.<br><em>Real Fire.</em></h1>
+        <p>
+            Bold flavors, fresh ingredients, and fire-grilled
+            favorites. Welcome to your new favorite place to eat.
+        </p>
+        <a class="button" href="#menu">Explore Our Menu →</a>
+    </div>
+</section>
+
+<section id="menu">
+    <div class="section-heading">
+        <span class="eyebrow">Made Fresh, Served Hot</span>
+        <h2>Our Signature Menu</h2>
+        <p>Simple ingredients, big flavor, and something delicious for everyone.</p>
+    </div>
+
+    <div class="menu-grid">
+
+        <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
+            alt="Cheeseburger with fresh toppings">
+            <div class="menu-info">
+                <h3>Oakhouse Burger</h3>
+                <p>A grilled beef patty with cheddar, lettuce, tomato, pickles, and our signature house sauce.</p>
+                <div class="price">$14.99</div>
+            </div>
+        </article>
+
+        <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
+            alt="Grilled barbecue meat">
+            <div class="menu-info">
+                <h3>Fire-Grilled Ribs</h3>
+                <p>Slow-cooked ribs coated in smoky barbecue sauce, served with seasoned fries.</p>
+                <div class="price">$21.99</div>
+            </div>
+        </article>
+
+        <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80"
+            alt="Freshly baked pizza">
+            <div class="menu-info">
+                <h3>Ember Pizza</h3>
+                <p>Crispy crust, melted mozzarella, tomato sauce, and fresh basil.</p>
+                <div class="price">$16.99</div>
+            </div>
+        </article>
+
+        <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80"
+            alt="Golden crispy french fries">
+            <div class="menu-info">
+                <h3>Oak Seasoned Fries</h3>
+                <p>Golden fries tossed in our house seasoning and served with dipping sauce.</p>
+                <div class="price">$5.99</div>
+            </div>
+        </article>
+
+        <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"
+            alt="Pizza with colorful toppings">
+            <div class="menu-info">
+                <h3>Garden Flatbread</h3>
+                <p>A crisp flatbread topped with roasted vegetables, herbs, and mozzarella.</p>
+                <div class="price">$12.99</div>
+            </div>
+        </article>
+
+        <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=800&q=80"
+            alt="Ice cream dessert">
+            <div class="menu-info">
+                <h3>Campfire Sundae</h3>
+                <p>Creamy vanilla ice cream with chocolate sauce and crunchy cookie pieces.</p>
+                <div class="price">$7.99</div>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<section class="special" id="special">
+    <div class="special-grid">
+        <div>
+            <span class="eyebrow">Limited-Time Favorite</span>
+            <h2>The Ember Special</h2>
+            <p>
+                Meet our signature double-stack burger with melted
+                smoked cheddar, crispy onions, and smoky house sauce
+                on a toasted brioche bun.
+            </p>
+            <p>A guest favorite, made fresh and served hot.</p>
+            <p>
+                <span class="old-price">$17.99</span>
+                <span class="new-price">$13.99</span>
+            </p>
+            <a class="button" href="#contact">Visit Us</a>
+        </div>
+
+        <img
+        src="https://images.unsplash.com/photo-1553979459-d2229ba7433a?auto=format&fit=crop&w=1000&q=80"
+        alt="Double cheeseburger featured as the daily special">
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="about-grid">
+        <img
+        src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80"
+        alt="Warm and welcoming restaurant interior">
+
+        <div>
+            <span class="eyebrow">Our Story</span>
+            <h2>Good Food.<br>Good People.</h2>
+            <p>
+                Ember & Oak started with one simple idea: a great
+                burger can bring people together. We are a fictional
+                neighborhood grill inspired by backyard cookouts,
+                fresh ingredients, and meals shared with friends.
+            </p>
+            <p>
+                Our goal is to serve delicious food in a relaxed,
+                welcoming atmosphere where everyone feels at home.
+            </p>
+            <ul>
+                <li>Fresh ingredients prepared with care</li>
+                <li>A family-friendly atmosphere</li>
+                <li>Bold flavors and generous portions</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="reviews">
+    <div class="section-heading">
+        <span class="eyebrow">Customer Reviews</span>
+        <h2>Don't Just Take Our Word</h2>
+        <p>Sample reviews for our fictional restaurant.</p>
+    </div>
+
+    <div class="review-grid">
+        <article class="review">
+            <div class="stars">★★★★★</div>
+            <p>"Amazing burgers and the perfect amount of smoky flavor!"</p>
+            <h3>— Jamie R.</h3>
+        </article>
+
+        <article class="review">
+            <div class="stars">★★★★★</div>
+            <p>"Great atmosphere, crispy fries, and something for everyone."</p>
+            <h3>— Morgan T.</h3>
+        </article>
+
+        <article class="review">
+            <div class="stars">★★★★★</div>
+            <p>"The perfect place to hang out with friends and enjoy dinner."</p>
+            <h3>— Alex P.</h3>
+        </article>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="section-heading">
+        <span class="eyebrow">Come Visit Us</span>
+        <h2>Location & Contact</h2>
+        <p>Find us, get in touch, or stop by for a meal.</p>
+    </div>
+
+    <div class="contact-grid">
+        <div class="contact-card">
+            <h3>Our Location</h3>
+            <p>123 Oak Street</p>
+            <p>Toms River, NJ 08753</p>
+            <p>Parking available nearby.</p>
+        </div>
+
+        <div class="contact-card">
+            <h3>Contact Information</h3>
+            <p>Phone: <a href="tel:+17325550148">(732) 555-0148</a></p>
+            <p>Email: <a href="mailto:hello@emberandoak.example">hello@emberandoak.example</a></p>
+        </div>
+
+        <div class="contact-card">
+            <h3>Hours of Operation</h3>
+            <p>Monday–Thursday: 11 AM–9 PM</p>
+            <p>Friday–Saturday: 11 AM–10 PM</p>
+            <p>Sunday: 12 PM–8 PM</p>
+        </div>
+
+        <div class="contact-card">
+            <h3>Our Mission</h3>
+            <p>Fresh food, friendly service, and a welcoming place for everyone.</p>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <p><span>EMBER & OAK</span> | Good Food. Real Fire.</p>
+    <p>Fictional restaurant created for an OCVTS Computer Science project.</p>
+    <p>© 2026 Ember & Oak</p>
+</footer>
+
+</body>
+</html>
